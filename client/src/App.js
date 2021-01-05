@@ -1,13 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios'
+import { useEffect, useState } from "react"
 
 function App() {
+  const [bearer, setBearer] = useState("")
+  useEffect(() => {
+    const innerFunc = async () => {
+      const bearerToken = await axios.get("/spotifyBearer").catch(err => console.error(err))
+      console.log(bearerToken)
+      if (bearerToken) { setBearer(bearerToken.data.bearer) }
+    }
+    innerFunc()
+  }, [])
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          if you see <code>{bearer}</code> the its time to get some data.
         </p>
         <a
           className="App-link"
