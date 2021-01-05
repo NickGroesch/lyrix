@@ -1,0 +1,10 @@
+{
+  "name": "lyrixserver",
+  "version": "0.0.0",
+  "description": "help me get some spotify credentials to develop frontend app",
+  "main": "server.js",
+  "repository": "git@github.com:NickGroesch/lyrix.git",
+  "author": "nickGroeschCodes@gmail.com",
+  "license": "tbd",
+  "private": null
+}
