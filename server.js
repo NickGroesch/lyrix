@@ -13,17 +13,23 @@ const init = async () => {
     console.log(`strtoken:${strToken}`)
     const b64Token = strToken.toString('base64')
     console.log(`b64token:${b64Token}`)
+    const params = new URLSearchParams()
+    params.append('grant_type', 'client_credentials')
     const access = await axios.post('https://accounts.spotify.com/api/token',
-        { grant_type: 'client_credentials' },
+        params,
         {
             headers: {
-                Authorization: `Basic ${b64Token}`
+                Authorization: `Basic ${b64Token}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).catch(e => console.log(e))
 
-    app.listen(PORT, function () {
-        console.log('App listening on PORT:' + PORT);
-    });
-    console.log(`access = ${access}`)
+
+    console.log(access)
+    if (access) {
+        app.listen(PORT, function () {
+            console.log('App listening on PORT:' + PORT);
+        });
+    }
 }
 init()
